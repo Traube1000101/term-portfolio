@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Terminal from '../components/TerminalContainer.vue'
+  import TerminalContainer from '../components/TerminalContainer.vue';
 </script>
 
 <template>
   <main>
-    <Terminal />
+    <TerminalContainer />
   </main>
 </template>

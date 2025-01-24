@@ -10,7 +10,7 @@
 a,
 .raspberry {
   text-decoration: none;
-  color: #e30b5c;
+  color: var(--color-raspberry);
   transition: 0.4s;
   padding: 3px;
 }

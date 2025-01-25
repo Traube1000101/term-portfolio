@@ -26,9 +26,6 @@
         this.terminal.writeln('This is a Terminal :3');
       },
     },
-    beforeUnmount() {
-      this.terminal?.dispose();
-    },
   };
 </script>
 

@@ -34,6 +34,10 @@
     terminal.value = new Terminal({
       cursorBlink: true,
       theme: terminalTheme,
+      fontFamily: 'CaskaydiaCove',
+      fontWeight: 300,
+      fontWeightBold: 700,
+      fontSize: 16,
     });
     const fitAddon = new FitAddon();
     terminal.value.loadAddon(fitAddon);

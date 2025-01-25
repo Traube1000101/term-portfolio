@@ -37,7 +37,7 @@
     });
     const fitAddon = new FitAddon();
     terminal.value.loadAddon(fitAddon);
-    terminal.value.open(terminalContainer.value);
+    terminal.value.open(terminalContainer.value!);
     fitAddon.fit();
 
     terminal.value.writeln('This is a Terminal :3');

@@ -57,3 +57,18 @@
 <template>
   <div ref="terminalContainer"></div>
 </template>
+
+<style>
+  .xterm-viewport::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .xterm-viewport::-webkit-scrollbar-track {
+    background: var(--color-border);
+  }
+
+  .xterm-viewport::-webkit-scrollbar-thumb {
+    background: var(--color-border-hover);
+    border-radius: 4px;
+  }
+</style>

@@ -76,7 +76,9 @@
 </script>
 
 <template>
-  <div ref="terminalContainer"></div>
+  <div id="terminal-border">
+    <div ref="terminalContainer" id="terminal-container"></div>
+  </div>
 </template>
 
 <style>
@@ -91,5 +93,48 @@
   .xterm-viewport::-webkit-scrollbar-thumb {
     background: var(--color-border-hover);
     border-radius: 4px;
+  }
+
+  #terminal-border {
+    width: 50vw;
+    height: 50vh;
+    padding: 8px 2px 2px 8px;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #terminal-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  #terminal-border::after {
+    content: '';
+    position: absolute;
+    width: 75vmax;
+    aspect-ratio: 1;
+    left: 50%;
+    top: 50%;
+    background: conic-gradient(#3a4ed5, var(--color-raspberry), #3a4ed5);
+    z-index: -1;
+    animation: rotate 10s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  #terminal-border::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background-color: var(--color-background-soft);
+    border-radius: 1rem;
   }
 </style>

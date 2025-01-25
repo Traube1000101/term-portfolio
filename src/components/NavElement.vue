@@ -7,12 +7,11 @@
 
 <template>
   <RouterLink class="nav-element" :to>
-      <slot></slot>
+    <slot></slot>
   </RouterLink>
 </template>
 
 <style>
-
   .nav-element.router-link-exact-active {
     -webkit-text-stroke: 0.05em var(--color-raspberry);
   }

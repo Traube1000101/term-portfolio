@@ -6,17 +6,17 @@
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 4.2rem;
-}
+  h1 {
+    font-weight: 500;
+    font-size: 4.2rem;
+  }
 
-h3 {
-  font-size: 1.6rem;
-}
+  h3 {
+    font-size: 1.6rem;
+  }
 
-.title h1,
-.title h3 {
-  text-align: center;
-}
+  .title h1,
+  .title h3 {
+    text-align: center;
+  }
 </style>

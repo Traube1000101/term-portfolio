@@ -28,6 +28,6 @@
     width: 100%;
     font-size: 1.2rem;
     text-align: center;
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 </style>

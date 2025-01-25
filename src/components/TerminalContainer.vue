@@ -1,16 +1,12 @@
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
-  import { useCssVar } from '@vueuse/core';
+  import { ref, onMounted, watch } from 'vue';
+  import { useCssVar, useMediaQuery } from '@vueuse/core';
   import { Terminal } from '@xterm/xterm';
   import { FitAddon } from '@xterm/addon-fit';
   import '@xterm/xterm/css/xterm.css';
 
-  const terminalTheme = {
-    foreground: useCssVar('--color-text').value,
-    background: useCssVar('--color-background-soft').value,
+  const terminalTheme = ref({
     selection: '#97979b33',
-    black: useCssVar('--vt-c-black').value,
-    brightBlack: useCssVar('--vt-c-black-mute').value,
     red: '#ff5c57',
     brightRed: '#ff5c57',
     green: '#5af78e',
@@ -23,9 +19,34 @@
     brightMagenta: '#ff6ac1',
     cyan: '#9aedfe',
     brightCyan: '#9aedfe',
-    white: useCssVar('--vt-c-white-mute').value,
-    brightWhite: useCssVar('--vt-c-white').value,
-  };
+  });
+
+  const prefersColorScheme = useMediaQuery('(prefers-color-scheme: light)');
+
+  watch(
+    prefersColorScheme,
+    () => {
+      const dynamicTheme = {
+        foreground: useCssVar('--color-text').value,
+        background: useCssVar('--color-background-soft').value,
+        black: useCssVar('--vt-c-black').value,
+        brightBlack: useCssVar('--vt-c-black-mute').value,
+        white: useCssVar('--vt-c-white-mute').value,
+        brightWhite: useCssVar('--vt-c-white').value,
+      };
+      terminalTheme.value = {
+        ...terminalTheme.value,
+        ...dynamicTheme,
+      };
+    },
+    { immediate: true },
+  );
+
+  watch(terminalTheme, (newTheme) => {
+    if (terminal.value) {
+      terminal.value.options.theme = newTheme;
+    }
+  });
 
   const terminal = ref<Terminal | null>(null);
   const terminalContainer = ref<HTMLElement | null>(null);
@@ -33,7 +54,7 @@
   const initializeTerminal = () => {
     terminal.value = new Terminal({
       cursorBlink: true,
-      theme: terminalTheme,
+      theme: terminalTheme.value,
       fontFamily: 'CaskaydiaCove',
       fontWeight: 300,
       fontWeightBold: 700,

@@ -98,7 +98,7 @@
   #terminal-border {
     width: 50vw;
     height: 50vh;
-    padding: 8px 2px 2px 8px;
+    padding: 2px;
     border-radius: 1rem;
     overflow: hidden;
     position: relative;
@@ -107,13 +107,21 @@
   #terminal-container {
     width: 100%;
     height: 100%;
+    background-color: var(--color-background-soft);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  #terminal-container > .xterm {
+    height: 100%;
+    padding: 8px;
   }
 
   #terminal-border::after {
     content: '';
     position: absolute;
     width: 75vmax;
-    aspect-ratio: 1;
+    height: 75vmax;
     left: 50%;
     top: 50%;
     background: conic-gradient(#3a4ed5, var(--color-raspberry), #3a4ed5);
@@ -128,13 +136,5 @@
     to {
       transform: translate(-50%, -50%) rotate(360deg);
     }
-  }
-
-  #terminal-border::before {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background-color: var(--color-background-soft);
-    border-radius: 1rem;
   }
 </style>

@@ -3,6 +3,7 @@
   import { useCssVar, useMediaQuery } from '@vueuse/core';
   import { Terminal } from '@xterm/xterm';
   import { FitAddon } from '@xterm/addon-fit';
+  import { WebglAddon } from '@xterm/addon-webgl';
   import '@xterm/xterm/css/xterm.css';
 
   const terminalTheme = ref({
@@ -63,6 +64,17 @@
     const fitAddon = new FitAddon();
     terminal.value.loadAddon(fitAddon);
     terminal.value.open(terminalContainer.value!);
+
+    const webgl = new WebglAddon();
+    try {
+      terminal.value.loadAddon(webgl);
+    } catch (e) {
+      console.warn("WebGL addon couldn't be loaded, default renderer will be used instead.", e);
+    }
+    webgl.onContextLoss(() => {
+      webgl.dispose();
+    });
+
     fitAddon.fit();
 
     terminal.value.writeln('This is a Terminal :3');

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ref, onMounted, watch } from 'vue';
-  import { useCssVar, useMediaQuery } from '@vueuse/core';
+  import { useCssVar, useMediaQuery, useResizeObserver } from '@vueuse/core';
   import { Terminal } from '@xterm/xterm';
   import { FitAddon } from '@xterm/addon-fit';
   import { WebglAddon } from '@xterm/addon-webgl';
@@ -75,7 +75,9 @@
       webgl.dispose();
     });
 
-    fitAddon.fit();
+    useResizeObserver(terminalContainer, () => {
+      fitAddon.fit();
+    });
 
     terminal.value.writeln('This is a Terminal :3');
   };
